@@ -6,7 +6,14 @@ import Header from '../components/Header';
 import fetcher from '../lib/fetcher';
 import type { AppProps } from 'next/app';
 
-export default function App({ Component, pageProps }: AppProps) {
+interface CustomAppProps extends AppProps {
+  pageProps: {
+    session?: any;
+    [key: string]: any;
+  };
+}
+
+export default function App({ Component, pageProps }: CustomAppProps) {
   const theme = useTheme();
   const [themeType, setThemeType] = useState('light');
   const switchThemes = () => {
