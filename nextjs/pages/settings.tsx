@@ -2,6 +2,11 @@ import type { NextPage } from 'next';
 import { useMemo } from 'react';
 import useSWR from 'swr';
 import { useSession } from 'next-auth/react';
+import type { Session } from 'next-auth';
+
+interface ExtendedSession extends Session {
+  accessToken?: string;
+}
 
 async function fetcher<JSON = any>(input: RequestInfo, init?: RequestInit): Promise<JSON> {
   const res = await fetch(input, init);
@@ -9,7 +14,7 @@ async function fetcher<JSON = any>(input: RequestInfo, init?: RequestInit): Prom
 }
 
 const Settings: NextPage = () => {
-  const { data: session } = useSession();
+  const { data: session } = useSession() as { data: ExtendedSession | null };
   console.log({ session, accessToken: session?.accessToken });
   const requestConfig = useMemo(
     () => ({

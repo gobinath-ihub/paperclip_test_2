@@ -5,8 +5,15 @@ import { SWRConfig } from 'swr';
 import Header from '../components/Header';
 import fetcher from '../lib/fetcher';
 import type { AppProps } from 'next/app';
+import type { Session } from 'next-auth';
 
-export default function App({ Component, pageProps }: AppProps) {
+type AppPropsWithSession = AppProps & {
+  pageProps: {
+    session?: Session;
+  };
+};
+
+export default function App({ Component, pageProps }: AppPropsWithSession) {
   const theme = useTheme();
   const [themeType, setThemeType] = useState('light');
   const switchThemes = () => {

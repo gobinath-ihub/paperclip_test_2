@@ -7,13 +7,14 @@
   },
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build --no-lint",
     "start": "next start",
     "lint": "next lint",
     "cdk:build": "tsc --project tsconfig.cdk.json",
     "cdk:synth": "cdk synth",
     "cdk": "cdk",
-    "deploy": "pnpm cdk:build; cdk deploy"
+    "deploy": "pnpm cdk:build; cdk deploy",
+    "export": "next export"
   },
   "dependencies": {
     "@aws-sdk/client-ssm": "^3.45.0",
@@ -41,6 +42,7 @@
     "@aws-cdk/aws-s3-deployment": "1.134.0",
     "@aws-cdk/aws-sqs": "1.134.0",
     "@aws-cdk/core": "1.134.0",
+    "@cloudflare/next-on-pages": "^1.0.0",
     "@sls-next/cdk-construct": "3.7.0-alpha.2",
     "@sls-next/lambda-at-edge": "3.7.0-alpha.2",
     "@types/dotenv-flow": "^3.2.0",
